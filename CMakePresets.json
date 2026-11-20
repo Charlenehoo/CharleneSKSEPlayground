@@ -1,0 +1,74 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 24, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+
+        "BUILD_TESTS": "OFF",
+        "ENABLE_SKYRIM_VR": "OFF"
+      }
+    },
+    {
+      "name": "clangcl",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      }
+    },
+    {
+      "name": "msvc",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl"
+      }
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "debug",
+      "hidden": true,
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "clangcl-release",
+      "inherits": ["clangcl", "release"],
+      "displayName": "clang-cl, Release"
+    },
+    {
+      "name": "clangcl-debug",
+      "inherits": ["clangcl", "debug"],
+      "displayName": "clang-cl, Debug"
+    },
+    {
+      "name": "msvc-release",
+      "inherits": ["msvc", "release"],
+      "displayName": "MSVC, Release"
+    },
+    {
+      "name": "msvc-debug",
+      "inherits": ["msvc", "debug"],
+      "displayName": "MSVC, Debug"
+    }
+  ],
+  "buildPresets": [
+    { "name": "clangcl-release", "configurePreset": "clangcl-release" },
+    { "name": "clangcl-debug", "configurePreset": "clangcl-debug" },
+    { "name": "msvc-release", "configurePreset": "msvc-release" },
+    { "name": "msvc-debug", "configurePreset": "msvc-debug" }
+  ]
+}

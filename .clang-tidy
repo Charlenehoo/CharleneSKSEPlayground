@@ -1,0 +1,114 @@
+# .clang-tidy
+HeaderFilterRegex: "^(src|include)/.*"
+
+Checks: >
+  -*,
+  readability-identifier-naming,
+  readability-*,
+  modernize-*,
+  bugprone-*,
+  cppcoreguidelines-*,
+  -modernize-use-trailing-return-type,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-magic-numbers
+
+CheckOptions:
+  # ---------- 命名空间 ----------
+  - key: readability-identifier-naming.NamespaceCase
+    value: CamelCase
+
+  # ---------- 类型 ----------
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.UnionCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypeAliasCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypedefCase
+    value: CamelCase
+  - key: readability-identifier-naming.TemplateParameterCase
+    value: CamelCase
+
+  # ---------- 枚举值 / 常量 ----------
+  - key: readability-identifier-naming.EnumConstantPrefix
+    value: "k"
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.ConstantPrefix
+    value: "k"
+  - key: readability-identifier-naming.ConstantCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.GlobalConstantPrefix
+    value: "k"
+  - key: readability-identifier-naming.GlobalConstantCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.StaticConstantPrefix
+    value: "k"
+  - key: readability-identifier-naming.StaticConstantCase
+    value: CamelCase
+
+  # ---------- 函数 ----------
+  - key: readability-identifier-naming.FunctionCase
+    value: CamelCase
+  - key: readability-identifier-naming.MethodCase
+    value: CamelCase
+  - key: readability-identifier-naming.VirtualMethodCase
+    value: CamelCase
+  - key: readability-identifier-naming.StaticMethodCase
+    value: CamelCase
+
+  # CommonLib 里 MoveTo_Impl / PlayAnimation_Impl 这种模式
+  - key: readability-identifier-naming.MethodIgnoredRegexp
+    value: ".*_Impl$"
+
+  # ---------- 参数 ----------
+  - key: readability-identifier-naming.ParameterPrefix
+    value: "a_"
+  - key: readability-identifier-naming.ParameterCase
+    value: camelBack
+
+  # ---------- 局部变量 ----------
+  - key: readability-identifier-naming.LocalVariableCase
+    value: camelBack
+  - key: readability-identifier-naming.LocalConstantCase
+    value: camelBack
+
+  # ---------- 成员 ----------
+  - key: readability-identifier-naming.PublicMemberCase
+    value: camelBack
+  - key: readability-identifier-naming.ProtectedMemberCase
+    value: camelBack
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: "m_"
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: camelBack
+
+  # ---------- 全局 / 静态变量 ----------
+  - key: readability-identifier-naming.GlobalVariablePrefix
+    value: "g_"
+  - key: readability-identifier-naming.GlobalVariableCase
+    value: camelBack
+
+  - key: readability-identifier-naming.StaticVariablePrefix
+    value: "s_"
+  - key: readability-identifier-naming.StaticVariableCase
+    value: camelBack
+
+  - key: readability-identifier-naming.StaticMemberPrefix
+    value: "s_"
+  - key: readability-identifier-naming.StaticMemberCase
+    value: camelBack
+
+  # ---------- 宏 ----------
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+  # SKSE 插件宏是 PascalCase，必须放行，否则每个插件入口都报
+  - key: readability-identifier-naming.MacroDefinitionIgnoredRegexp
+    value: "^SKSEPlugin.*"

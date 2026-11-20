@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "**/.clangd": "yaml",
+    "**/.clang-tidy": "yaml",
+    "**/.clang-format": "yaml"
+  },
+  "files.insertFinalNewline": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
