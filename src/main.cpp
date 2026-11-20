@@ -1,4 +1,5 @@
 #include "Plugin.h"
+#include "Probe.h"
 
 #include <SKSE/SKSE.h>
 
@@ -39,6 +40,14 @@ SKSE_PLUGIN_LOAD(const SKSE::LoadInterface* a_skse) {
     }
     if (!messaging->RegisterListener(OnMessage)) {
         return false;
+    }
+
+    try {
+        Probe::Install();
+    } catch (const std::exception& e) {
+        SKSE::log::error("[PROBE] Install threw: {}", e.what());
+    } catch (...) {
+        SKSE::log::error("[PROBE] Install threw (unknown)");
     }
 
     return true;

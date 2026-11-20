@@ -28,6 +28,7 @@ endif()
 
 add_library("${PROJECT_NAME}" SHARED
     src/main.cpp
+    src/Probe.cpp
 )
 
 target_include_directories(
